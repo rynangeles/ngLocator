@@ -1,0 +1,8 @@
+/* Put your css in here */
+.locator-map{
+  min-height: 300px;
+  border: 1px solid #CCC;
+}
+.item-minimap img{
+  width: 100%;
+}

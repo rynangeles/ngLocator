@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>AngularJS Plunker</title>
+    <link data-require="bootstrap-css@*" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+    <script>document.write('<base href="' + document.location + '" />');</script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="angular.js@1.4.x" src="https://code.angularjs.org/1.4.1/angular.js" data-semver="1.4.1"></script>
+    <script data-require="google-maps@*" data-semver="1.0.0" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script data-require="ui-bootstrap@*" data-semver="0.13.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
+    <script src="app.js"></script>
+    <script src="locator-service.js"></script>
+    <script src="locator-directive.js"></script>
+  </head>
+
+  <body ng-controller="AppCtrl as app">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6  col-md-offset-1">
+          <h3>Google Map API Angular Integration</h3>
+          <hr />
+          <h4>Create Location</h4>
+          <form ng-submit="app.addLocation(location)">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input ng-model="location.name" required type="text" class="form-control" id="name" placeholder="Name">
+            </div>
+            <ng-locator location="location.detail"></ng-locator>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </div>
+        <div class="col-md-4">
+          <div class="item-minimap" ng-repeat="location in locations">
+            <h3>{{location.name}}</h3>
+            <p>{{location.detail.address}}</p>
+            <p>coordinates: {{location.detail.coords.lat + ' , ' + location.detail.coords.lng}}</p>
+            <img ng-src="http://maps.google.com/maps/api/staticmap?center={{location.detail.coords.lat}},{{location.detail.coords.lng}}&zoom=17&markers={{location.detail.coords.lat}},{{location.detail.coords.lng}}&size=700x350&sensor=TRUE_OR_FALSE">
+        	</div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>
